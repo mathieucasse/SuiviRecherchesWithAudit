@@ -13,7 +13,7 @@
                         <dl>
                             <dt><span jhiTranslate="suiviRecherchesApp.recherche.date">Date</span></dt>
                             <dd>
-                                <span>{{ recherche.date }}</span>
+                                <span>{{ recherche.date | localizedDate:'short' }}</span>
                             </dd>
                             <dt><span jhiTranslate="suiviRecherchesApp.recherche.poste">Poste</span></dt>
                             <dd>
@@ -83,3 +83,4 @@
             </div>
         </div>
     </div>
+</div>
