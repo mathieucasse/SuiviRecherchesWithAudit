@@ -22,9 +22,8 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="firstName"><span jhiTranslate="suiviRecherchesApp.personne.firstName">First Name</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="lastName"><span jhiTranslate="suiviRecherchesApp.personne.lastName">Last Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="firstName"><span jhiTranslate="suiviRecherchesApp.personne.firstName">First Name</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="email"><span jhiTranslate="suiviRecherchesApp.personne.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="phoneNumber"><span jhiTranslate="suiviRecherchesApp.personne.phoneNumber">Phone Number</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="entrepriseName"><span jhiTranslate="suiviRecherchesApp.personne.entreprise">Entreprise</span> <fa-icon icon="sort"></fa-icon></th>
@@ -33,9 +32,8 @@
             </thead>
             <tbody>
                 <tr *ngFor="let personne of personnes ;trackBy: trackId">
-                    <td><a [routerLink]="['/personne', personne.id, 'view']">{{ personne.id }}</a></td>
-                    <td>{{ personne.firstName }}</td>
                     <td>{{ personne.lastName }}</td>
+                    <td>{{ personne.firstName }}</td>
                     <td>{{ personne.email }}</td>
                     <td>{{ personne.phoneNumber }}</td>
                     <td>

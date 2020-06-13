@@ -3,15 +3,15 @@
     "recherche": {
       "home": {
         "title": "Recherches",
-        "createLabel": "Créer un nouveau Recherche",
-        "createOrEditLabel": "Créer ou éditer un Recherche",
-        "notFound": "Aucun Recherche trouvé"
+        "createLabel": "Créer une nouvelle Recherche",
+        "createOrEditLabel": "Créer ou éditer une Recherche",
+        "notFound": "Aucune Recherche trouvée"
       },
-      "created": "Un nouveau Recherche a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Recherche avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Recherche avec l'identifiant {{ param }} a été supprimé",
+      "created": "Une nouvelle Recherche a été créée avec l'identifiant {{ param }}",
+      "updated": "La Recherche avec l'identifiant {{ param }} a été mise à jour",
+      "deleted": "La Recherche avec l'identifiant {{ param }} a été supprimée",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer le Recherche {{ id }} ?"
+        "question": "Etes-vous certain de vouloir supprimer la Recherche {{ id }} ?"
       },
       "detail": {
         "title": "Recherche"
@@ -20,12 +20,12 @@
       "poste": "Poste",
       "location": "Location",
       "assignationORP": "Assignation ORP",
-      "txactivite": "Txactivite",
-      "offredeservice": "Offredeservice",
-      "resoffredeservice": "Resoffredeservice",
-      "motifres": "Motifres",
-      "entPrestataire": "Ent Prestataire",
-      "entFinale": "Ent Finale",
+      "txactivite": "% activite",
+      "offredeservice": "Offre de service",
+      "resoffredeservice": "Statut",
+      "motifres": "Notes",
+      "entPrestataire": "Ent. Prestataire",
+      "entFinale": "Ent. Finale",
       "contact": "Contact"
     }
   }
