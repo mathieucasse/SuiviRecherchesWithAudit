@@ -22,32 +22,32 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+<!--                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>-->
                     <th scope="col"  jhiSortBy="date"><span jhiTranslate="suiviRecherchesApp.recherche.date">Date</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="poste"><span jhiTranslate="suiviRecherchesApp.recherche.poste">Poste</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="location"><span jhiTranslate="suiviRecherchesApp.recherche.location">Location</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="assignationORP"><span jhiTranslate="suiviRecherchesApp.recherche.assignationORP">Assignation ORP</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="txactivite"><span jhiTranslate="suiviRecherchesApp.recherche.txactivite">Txactivite</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="offredeservice"><span jhiTranslate="suiviRecherchesApp.recherche.offredeservice">Offredeservice</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="resoffredeservice"><span jhiTranslate="suiviRecherchesApp.recherche.resoffredeservice">Resoffredeservice</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="motifres"><span jhiTranslate="suiviRecherchesApp.recherche.motifres">Motifres</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="poste"><span jhiTranslate="suiviRecherchesApp.recherche.poste">Poste</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="contactLastName"><span jhiTranslate="suiviRecherchesApp.recherche.contact">Contact</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="entPrestataireName"><span jhiTranslate="suiviRecherchesApp.recherche.entPrestataire">Ent Prestataire</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="entFinaleName"><span jhiTranslate="suiviRecherchesApp.recherche.entFinale">Ent Finale</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="contactLastName"><span jhiTranslate="suiviRecherchesApp.recherche.contact">Contact</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="location"><span jhiTranslate="suiviRecherchesApp.recherche.location">Location</span> <fa-icon icon="sort"></fa-icon></th>
+<!--                    <th scope="col"  jhiSortBy="assignationORP"><span jhiTranslate="suiviRecherchesApp.recherche.assignationORP">Assignation ORP</span> <fa-icon icon="sort"></fa-icon></th>-->
+<!--                    <th scope="col"  jhiSortBy="txactivite"><span jhiTranslate="suiviRecherchesApp.recherche.txactivite">Txactivite</span> <fa-icon icon="sort"></fa-icon></th>-->
+<!--                    <th scope="col"  jhiSortBy="offredeservice"><span jhiTranslate="suiviRecherchesApp.recherche.offredeservice">Offredeservice</span> <fa-icon icon="sort"></fa-icon></th>-->
+<!--                    <th scope="col"  jhiSortBy="motifres"><span jhiTranslate="suiviRecherchesApp.recherche.motifres">Motifres</span> <fa-icon icon="sort"></fa-icon></th>-->
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let recherche of recherches ;trackBy: trackId">
-                    <td><a [routerLink]="['/recherche', recherche.id, 'view']">{{ recherche.id }}</a></td>
+<!--                    <td><a [routerLink]="['/recherche', recherche.id, 'view']">{{ recherche.id }}</a></td>-->
                     <td>{{ recherche.date | date:'medium' }}</td>
-                    <td>{{ recherche.poste }}</td>
-                    <td>{{ recherche.location }}</td>
-                    <td>{{ recherche.assignationORP }}</td>
-                    <td>{{ recherche.txactivite }}</td>
-                    <td jhiTranslate="{{ 'suiviRecherchesApp.OffreDeService.' + recherche.offredeservice }}">{{ recherche.offredeservice }}</td>
                     <td jhiTranslate="{{ 'suiviRecherchesApp.ResOffreDeService.' + recherche.resoffredeservice }}">{{ recherche.resoffredeservice }}</td>
-                    <td>{{ recherche.motifres }}</td>
+                    <td>{{ recherche.poste }}</td>
+                    <td>
+                        <div *ngIf="recherche.contactId">
+                            <a [routerLink]="['/personne', recherche.contactId , 'view']" >{{ recherche.contactLastName }}</a>
+                        </div>
+                    </td>
                     <td>
                         <div *ngIf="recherche.entPrestataireId">
                             <a [routerLink]="['/entreprise', recherche.entPrestataireId , 'view']" >{{ recherche.entPrestataireName }}</a>
@@ -58,16 +58,16 @@
                             <a [routerLink]="['/entreprise', recherche.entFinaleId , 'view']" >{{ recherche.entFinaleName }}</a>
                         </div>
                     </td>
-                    <td>
-                        <div *ngIf="recherche.contactId">
-                            <a [routerLink]="['/personne', recherche.contactId , 'view']" >{{ recherche.contactLastName }}</a>
-                        </div>
-                    </td>
+                    <td>{{ recherche.location }}</td>
+<!--                    <td>{{ recherche.assignationORP }}</td>-->
+<!--                    <td>{{ recherche.txactivite }}</td>-->
+<!--                    <td jhiTranslate="{{ 'suiviRecherchesApp.OffreDeService.' + recherche.offredeservice }}">{{ recherche.offredeservice }}</td>-->
+<!--                    <td>{{ recherche.motifres }}</td>-->
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
                                     [routerLink]="['/recherche', recherche.id, 'view']"
-                                    class="btn btn-info btn-sm">
+                                    class="btn btn-info btn-sm btn">
                                 <fa-icon icon="eye"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                             </button>
