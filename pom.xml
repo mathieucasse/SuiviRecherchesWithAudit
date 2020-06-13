@@ -22,7 +22,7 @@
 
     <scm>
         <connection>scm:git:https://github.com/mathieucasse/SuiviRecherchesWithAudit.git</connection>
-        <url>http://github.com/mathieucasse/SuiviRecherchesWithAudit</url>
+        <url>https://github.com/mathieucasse/SuiviRecherchesWithAudit</url>
         <developerConnection>scm:git:https://github.com/mathieucasse/SuiviRecherchesWithAudit.git</developerConnection>
       <tag>HEAD</tag>
   </scm>
