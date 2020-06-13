@@ -3,23 +3,23 @@
     "personne": {
       "home": {
         "title": "Personnes",
-        "createLabel": "Créer un nouveau Personne",
-        "createOrEditLabel": "Créer ou éditer un Personne",
-        "notFound": "Aucun Personne trouvé"
+        "createLabel": "Créer une nouvelle Personne",
+        "createOrEditLabel": "Créer ou éditer une Personne",
+        "notFound": "Aucune Personne trouvée"
       },
-      "created": "Un nouveau Personne a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Personne avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Personne avec l'identifiant {{ param }} a été supprimé",
+      "created": "Une nouvelle Personne a été créée avec l'identifiant {{ param }}",
+      "updated": "La Personne avec l'identifiant {{ param }} a été mise à jour",
+      "deleted": "La Personne avec l'identifiant {{ param }} a été supprimée",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer le Personne {{ id }} ?"
+        "question": "Etes-vous certain de vouloir supprimer la Personne {{ id }} ?"
       },
       "detail": {
         "title": "Personne"
       },
-      "firstName": "First Name",
-      "lastName": "Last Name",
+      "firstName": "Prenom",
+      "lastName": "Nom",
       "email": "Email",
-      "phoneNumber": "Phone Number",
+      "phoneNumber": "Telephone",
       "entreprise": "Entreprise"
     }
   }

@@ -22,7 +22,7 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+<!--                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>-->
                     <th scope="col"  jhiSortBy="name"><span jhiTranslate="suiviRecherchesApp.entreprise.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="email"><span jhiTranslate="suiviRecherchesApp.entreprise.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="phoneNumber"><span jhiTranslate="suiviRecherchesApp.entreprise.phoneNumber">Phone Number</span> <fa-icon icon="sort"></fa-icon></th>
@@ -31,7 +31,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let entreprise of entreprises ;trackBy: trackId">
-                    <td><a [routerLink]="['/entreprise', entreprise.id, 'view']">{{ entreprise.id }}</a></td>
+<!--                    <td><a [routerLink]="['/entreprise', entreprise.id, 'view']">{{ entreprise.id }}</a></td>-->
                     <td>{{ entreprise.name }}</td>
                     <td>{{ entreprise.email }}</td>
                     <td>{{ entreprise.phoneNumber }}</td>
