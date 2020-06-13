@@ -12,6 +12,7 @@ import { EntityAuditModalComponent } from './entity-audit-modal.component';
   styles: [
     `
       .code {
+        color: #444444;
         background: #dcdada;
         padding: 10px;
       }
