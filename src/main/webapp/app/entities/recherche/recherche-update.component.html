@@ -1,0 +1,120 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-recherche-heading" jhiTranslate="suiviRecherchesApp.recherche.home.createOrEditLabel">Create or edit a Recherche</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="suiviRecherchesApp.recherche.date" for="field_date">Date</label>
+                    <div class="d-flex">
+                        <input id="field_date" type="datetime-local" class="form-control" name="date" formControlName="date" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="suiviRecherchesApp.recherche.poste" for="field_poste">Poste</label>
+                    <input type="text" class="form-control" name="poste" id="field_poste"
+                           formControlName="poste"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="suiviRecherchesApp.recherche.location" for="field_location">Location</label>
+                    <input type="text" class="form-control" name="location" id="field_location"
+                           formControlName="location"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="suiviRecherchesApp.recherche.assignationORP" for="field_assignationORP">Assignation ORP</label>
+                    <input type="checkbox" class="form-control" name="assignationORP" id="field_assignationORP"
+                           formControlName="assignationORP"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="suiviRecherchesApp.recherche.txactivite" for="field_txactivite">Txactivite</label>
+                    <input type="number" class="form-control" name="txactivite" id="field_txactivite"
+                           formControlName="txactivite"/>
+                    <div *ngIf="editForm.get('txactivite')!.invalid && (editForm.get('txactivite')!.dirty || editForm.get('txactivite')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('txactivite')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 1 }">
+                            This field should be at least 1.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('txactivite')?.errors?.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 100 }">
+                            This field cannot be more than 100.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('txactivite')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="suiviRecherchesApp.recherche.offredeservice" for="field_offredeservice">Offredeservice</label>
+                    <select class="form-control" name="offredeservice" formControlName="offredeservice" id="field_offredeservice">
+                        <option value="Email">{{ 'suiviRecherchesApp.OffreDeService.Email' | translate }}</option>
+                        <option value="Visite">{{ 'suiviRecherchesApp.OffreDeService.Visite' | translate }}</option>
+                        <option value="Phone">{{ 'suiviRecherchesApp.OffreDeService.Phone' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="suiviRecherchesApp.recherche.resoffredeservice" for="field_resoffredeservice">Resoffredeservice</label>
+                    <select class="form-control" name="resoffredeservice" formControlName="resoffredeservice" id="field_resoffredeservice">
+                        <option value="EnCours">{{ 'suiviRecherchesApp.ResOffreDeService.EnCours' | translate }}</option>
+                        <option value="Entretien">{{ 'suiviRecherchesApp.ResOffreDeService.Entretien' | translate }}</option>
+                        <option value="Engagement">{{ 'suiviRecherchesApp.ResOffreDeService.Engagement' | translate }}</option>
+                        <option value="Negatif">{{ 'suiviRecherchesApp.ResOffreDeService.Negatif' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="suiviRecherchesApp.recherche.motifres" for="field_motifres">Motifres</label>
+                    <input type="text" class="form-control" name="motifres" id="field_motifres"
+                           formControlName="motifres"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="suiviRecherchesApp.recherche.entPrestataire" for="field_entPrestataire">Ent Prestataire</label>
+                    <select class="form-control" id="field_entPrestataire" name="entPrestataire" formControlName="entPrestataireId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="entrepriseOption.id" *ngFor="let entrepriseOption of entreprises; trackBy: trackById">{{ entrepriseOption.name }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="suiviRecherchesApp.recherche.entFinale" for="field_entFinale">Ent Finale</label>
+                    <select class="form-control" id="field_entFinale" name="entFinale" formControlName="entFinaleId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="entrepriseOption.id" *ngFor="let entrepriseOption of entreprises; trackBy: trackById">{{ entrepriseOption.name }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="suiviRecherchesApp.recherche.contact" for="field_contact">Contact</label>
+                    <select class="form-control" id="field_contact" name="contact" formControlName="contactId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="personneOption.id" *ngFor="let personneOption of personnes; trackBy: trackById">{{ personneOption.lastName }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="recherche">
+            <h2><span jhiTranslate="suiviRecherchesApp.recherche.detail.title">Recherche</span> {{ recherche.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="suiviRecherchesApp.recherche.date">Date</span></dt>
+                <dd>
+                    <span>{{ recherche.date }}</span>
+                </dd>
+                <dt><span jhiTranslate="suiviRecherchesApp.recherche.poste">Poste</span></dt>
+                <dd>
+                    <span>{{ recherche.poste }}</span>
+                </dd>
+                <dt><span jhiTranslate="suiviRecherchesApp.recherche.location">Location</span></dt>
+                <dd>
+                    <span>{{ recherche.location }}</span>
+                </dd>
+                <dt><span jhiTranslate="suiviRecherchesApp.recherche.assignationORP">Assignation ORP</span></dt>
+                <dd>
+                    <span>{{ recherche.assignationORP }}</span>
+                </dd>
+                <dt><span jhiTranslate="suiviRecherchesApp.recherche.txactivite">Txactivite</span></dt>
+                <dd>
+                    <span>{{ recherche.txactivite }}</span>
+                </dd>
+                <dt><span jhiTranslate="suiviRecherchesApp.recherche.offredeservice">Offredeservice</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'suiviRecherchesApp.OffreDeService.' + recherche.offredeservice }}">{{ recherche.offredeservice }}</span>
+                </dd>
+                <dt><span jhiTranslate="suiviRecherchesApp.recherche.resoffredeservice">Resoffredeservice</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'suiviRecherchesApp.ResOffreDeService.' + recherche.resoffredeservice }}">{{ recherche.resoffredeservice }}</span>
+                </dd>
+                <dt><span jhiTranslate="suiviRecherchesApp.recherche.motifres">Motifres</span></dt>
+                <dd>
+                    <span>{{ recherche.motifres }}</span>
+                </dd>
+                <dt><span jhiTranslate="suiviRecherchesApp.recherche.entPrestataire">Ent Prestataire</span></dt>
+                <dd>
+                    <div *ngIf="recherche.entPrestataireId">
+                        <a [routerLink]="['/entreprise', recherche.entPrestataireId, 'view']">{{ recherche.entPrestataireName }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="suiviRecherchesApp.recherche.entFinale">Ent Finale</span></dt>
+                <dd>
+                    <div *ngIf="recherche.entFinaleId">
+                        <a [routerLink]="['/entreprise', recherche.entFinaleId, 'view']">{{ recherche.entFinaleName }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="suiviRecherchesApp.recherche.contact">Contact</span></dt>
+                <dd>
+                    <div *ngIf="recherche.contactId">
+                        <a [routerLink]="['/personne', recherche.contactId, 'view']">{{ recherche.contactLastName }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/recherche', recherche.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

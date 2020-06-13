@@ -1,0 +1,24 @@
+{
+  "suiviRecherchesApp": {
+    "entreprise": {
+      "home": {
+        "title": "Entreprises",
+        "createLabel": "Entreprise erstellen",
+        "createOrEditLabel": "Entreprise erstellen oder bearbeiten",
+        "notFound": "No Entreprises found"
+      },
+      "created": "Entreprise erstellt mit ID {{ param }}",
+      "updated": "Entreprise aktualisiert mit ID {{ param }}",
+      "deleted": "Entreprise gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Entreprise {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Entreprise"
+      },
+      "name": "Name",
+      "email": "Email",
+      "phoneNumber": "Phone Number"
+    }
+  }
+}

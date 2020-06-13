@@ -1,0 +1,32 @@
+{
+  "suiviRecherchesApp": {
+    "recherche": {
+      "home": {
+        "title": "Recherches",
+        "createLabel": "Recherche erstellen",
+        "createOrEditLabel": "Recherche erstellen oder bearbeiten",
+        "notFound": "No Recherches found"
+      },
+      "created": "Recherche erstellt mit ID {{ param }}",
+      "updated": "Recherche aktualisiert mit ID {{ param }}",
+      "deleted": "Recherche gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Recherche {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Recherche"
+      },
+      "date": "Date",
+      "poste": "Poste",
+      "location": "Location",
+      "assignationORP": "Assignation ORP",
+      "txactivite": "Txactivite",
+      "offredeservice": "Offredeservice",
+      "resoffredeservice": "Resoffredeservice",
+      "motifres": "Motifres",
+      "entPrestataire": "Ent Prestataire",
+      "entFinale": "Ent Finale",
+      "contact": "Contact"
+    }
+  }
+}

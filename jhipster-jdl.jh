@@ -1,0 +1,49 @@
+
+entity Entreprise {
+	name String,
+	email String,
+	phoneNumber String,
+}
+entity Personne {
+	firstName String,
+	lastName String,
+	email String,
+	phoneNumber String
+}
+enum OffreDeService{
+    Email, Visite, Phone
+}
+enum ResOffreDeService{
+    EnCours, Entretien, Engagement, Negatif
+}
+entity Recherche{
+	date Instant, 
+    poste String,
+    location String,
+    assignationORP Boolean,
+    txactivite Integer min(1) max(100),
+    offredeservice OffreDeService,
+    resoffredeservice ResOffreDeService,
+    motifres String
+}
+relationship ManyToOne {
+	Recherche{entPrestataire(name)} to Entreprise,
+    Recherche{entFinale(name)} to Entreprise,
+    Recherche{contact(lastName)} to Personne,
+    Personne{entreprise(name)} to Entreprise
+}
+
+
+// Set pagination options
+paginate Recherche, Entreprise, Personne with infinite-scroll
+paginate Recherche, Entreprise, Personne with pagination
+
+// Use Data Transfert Objects (DTO)
+ dto Recherche, Entreprise, Personne with mapstruct
+
+// Set service options to all except few
+service Recherche, Entreprise, Personne with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
+

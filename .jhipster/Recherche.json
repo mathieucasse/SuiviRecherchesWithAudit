@@ -1,0 +1,76 @@
+{
+  "name": "Recherche",
+  "fields": [
+    {
+      "fieldName": "date",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "poste",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "location",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "assignationORP",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "txactivite",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMin": "1",
+      "fieldValidateRulesMax": "100"
+    },
+    {
+      "fieldName": "offredeservice",
+      "fieldType": "OffreDeService",
+      "fieldValues": "Email,Visite,Phone"
+    },
+    {
+      "fieldName": "resoffredeservice",
+      "fieldType": "ResOffreDeService",
+      "fieldValues": "EnCours,Entretien,Engagement,Negatif"
+    },
+    {
+      "fieldName": "motifres",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "entreprise",
+      "otherEntityRelationshipName": "recherche",
+      "relationshipName": "entPrestataire",
+      "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "entreprise",
+      "otherEntityRelationshipName": "recherche",
+      "relationshipName": "entFinale",
+      "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "personne",
+      "otherEntityRelationshipName": "recherche",
+      "relationshipName": "contact",
+      "otherEntityField": "lastName"
+    }
+  ],
+  "changelogDate": "20200612190800",
+  "entityTableName": "recherche",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "clientRootFolder": "",
+  "applications": "*",
+  "enableEntityAudit": true
+}

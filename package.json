@@ -32,7 +32,8 @@
     "rxjs": "6.5.3",
     "swagger-ui-dist": "3.24.3",
     "tslib": "1.10.0",
-    "zone.js": "0.10.2"
+    "zone.js": "0.10.2",
+    "ng-diff-match-patch": "2.0.6"
   },
   "devDependencies": {
     "@angular/cli": "8.3.20",
@@ -106,7 +107,8 @@
     "webpack-merge": "4.2.2",
     "webpack-notifier": "1.8.0",
     "workbox-webpack-plugin": "4.3.1",
-    "write-file-webpack-plugin": "4.5.1"
+    "write-file-webpack-plugin": "4.5.1",
+    "generator-jhipster-entity-audit": "3.3.0"
   },
   "engines": {
     "node": ">=8.9.0",

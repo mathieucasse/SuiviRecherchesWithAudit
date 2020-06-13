@@ -1,0 +1,26 @@
+{
+  "suiviRecherchesApp": {
+    "personne": {
+      "home": {
+        "title": "Personnes",
+        "createLabel": "Crear nuevo Personne",
+        "createOrEditLabel": "Crear o editar Personne",
+        "notFound": "Ningún Personnes encontrado"
+      },
+      "created": "Un nuevo Personne ha sido creado con el identificador {{ param }}",
+      "updated": "Un Personne ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Personne ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Personne {{ id }}?"
+      },
+      "detail": {
+        "title": "Personne"
+      },
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phoneNumber": "Phone Number",
+      "entreprise": "Entreprise"
+    }
+  }
+}

@@ -131,7 +131,7 @@ jhipster:
   #     allow-credentials: true
   #     max-age: 1800
   mail:
-    from: SuiviRecherches@localhost
+    from: SuiviRecherches@matfly.ch
   swagger:
     default-include-pattern: /api/.*
     title: SuiviRecherches API

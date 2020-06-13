@@ -2,6 +2,7 @@ package ch.matfly.suivirecherches;
 
 import ch.matfly.suivirecherches.config.ApplicationProperties;
 
+import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 import io.github.jhipster.config.DefaultProfileUtil;
 import io.github.jhipster.config.JHipsterConstants;
 
@@ -22,6 +23,7 @@ import java.util.Collection;
 
 @SpringBootApplication
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
+@EnableEncryptableProperties
 public class SuiviRecherchesApp {
 
     private static final Logger log = LoggerFactory.getLogger(SuiviRecherchesApp.class);

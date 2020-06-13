@@ -1,0 +1,10 @@
+{
+  "suiviRecherchesApp": {
+    "OffreDeService": {
+      "null": "",
+      "Email": "Email",
+      "Visite": "Visite",
+      "Phone": "Phone"
+    }
+  }
+}

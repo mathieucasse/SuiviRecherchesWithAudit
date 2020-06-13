@@ -1,0 +1,11 @@
+{
+  "suiviRecherchesApp": {
+    "ResOffreDeService": {
+      "null": "",
+      "EnCours": "EnCours",
+      "Entretien": "Entretien",
+      "Engagement": "Engagement",
+      "Negatif": "Negatif"
+    }
+  }
+}

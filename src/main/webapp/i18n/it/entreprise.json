@@ -1,0 +1,24 @@
+{
+  "suiviRecherchesApp": {
+    "entreprise": {
+      "home": {
+        "title": "Entreprises",
+        "createLabel": "Genera un nuovo Entreprise",
+        "createOrEditLabel": "Genera o modifica un Entreprise",
+        "notFound": "No Entreprises found"
+      },
+      "created": "&Egrave; stato generato un nuovo Entreprise con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato Entreprise identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato Entreprise con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare Entreprise {{ id }}?"
+      },
+      "detail": {
+        "title": "Entreprise"
+      },
+      "name": "Name",
+      "email": "Email",
+      "phoneNumber": "Phone Number"
+    }
+  }
+}

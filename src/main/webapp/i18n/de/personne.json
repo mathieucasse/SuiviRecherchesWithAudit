@@ -1,0 +1,26 @@
+{
+  "suiviRecherchesApp": {
+    "personne": {
+      "home": {
+        "title": "Personnes",
+        "createLabel": "Personne erstellen",
+        "createOrEditLabel": "Personne erstellen oder bearbeiten",
+        "notFound": "No Personnes found"
+      },
+      "created": "Personne erstellt mit ID {{ param }}",
+      "updated": "Personne aktualisiert mit ID {{ param }}",
+      "deleted": "Personne gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Personne {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Personne"
+      },
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phoneNumber": "Phone Number",
+      "entreprise": "Entreprise"
+    }
+  }
+}
