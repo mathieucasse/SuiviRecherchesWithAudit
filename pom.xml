@@ -7,8 +7,8 @@
     <artifactId>suivi-recherches</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <!-- Packaging : if war add provided to prod's spring-boot-starter-undertow-->
-    <!-- <packaging>jar</packaging>-->
-    <packaging>war</packaging>
+     <packaging>jar</packaging>
+<!--    <packaging>war</packaging>-->
     <name>Suivi Recherches</name>
 
     <repositories>
@@ -982,7 +982,7 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-undertow</artifactId>
                     <!-- Packaging : comment for jar / uncomment for war -->
-                    <scope>provided</scope>
+<!--                    <scope>provided</scope>-->
                 </dependency>
             </dependencies>
             <build>
