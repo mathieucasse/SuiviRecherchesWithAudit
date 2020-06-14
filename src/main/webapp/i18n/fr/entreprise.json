@@ -3,7 +3,7 @@
     "entreprise": {
       "home": {
         "title": "Entreprises",
-        "createLabel": "Créer uns nouvelle Entreprise",
+        "createLabel": "Créer une nouvelle Entreprise",
         "createOrEditLabel": "Créer ou éditer une Entreprise",
         "notFound": "Aucune Entreprise trouvée"
       },

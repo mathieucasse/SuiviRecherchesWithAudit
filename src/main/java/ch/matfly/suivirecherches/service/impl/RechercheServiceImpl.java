@@ -57,7 +57,7 @@ public class RechercheServiceImpl implements RechercheService {
     @Transactional(readOnly = true)
     public Page<RechercheDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Recherches");
-        return rechercheRepository.findAll(pageable)
+        return rechercheRepository.findAllByOrderByDateDesc(pageable)
             .map(rechercheMapper::toDto);
     }
 

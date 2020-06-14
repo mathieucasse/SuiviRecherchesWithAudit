@@ -85,6 +85,7 @@
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
+        <maven-jar-plugin.version>3.1.2</maven-jar-plugin.version>
         <maven-checkstyle.version>3.1.0</maven-checkstyle.version>
         <checkstyle.version>8.29</checkstyle.version>
         <spring-nohttp-checkstyle.version>0.0.4.RELEASE</spring-nohttp-checkstyle.version>
@@ -501,6 +502,16 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven-jar-plugin.version}</version>
+                    <configuration>
+                        <excludes>
+                            <exclude>**/application-dev.yml</exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
                     <version>${maven-war-plugin.version}</version>
                     <executions>
@@ -802,12 +813,15 @@
                                         <includes>
                                             <include>config/*.yml</include>
                                         </includes>
+<!--                                        <excludes>-->
+<!--                                            <exclude>config/application-dev.yml</exclude>-->
+<!--                                        </excludes>-->
                                     </resource>
                                     <resource>
                                         <directory>src/main/resources/</directory>
                                         <filtering>false</filtering>
                                         <excludes>
-                                            <exclude>config/*.yml</exclude>
+                                            <exclude>config/*-dev.yml</exclude>
                                         </excludes>
                                     </resource>
                                 </resources>
