@@ -19,6 +19,18 @@
                             <dd>
                                 <span>{{ recherche.poste }}</span>
                             </dd>
+                            <dt><span jhiTranslate="suiviRecherchesApp.recherche.entFinale">Ent Finale</span></dt>
+                            <dd>
+                                <div *ngIf="recherche.entFinaleId">
+                                    <a [routerLink]="['/entreprise', recherche.entFinaleId, 'view']">{{ recherche.entFinaleName }}</a>
+                                </div>
+                            </dd>
+                            <dt><span jhiTranslate="suiviRecherchesApp.recherche.entPrestataire">Ent Prestataire</span></dt>
+                            <dd>
+                                <div *ngIf="recherche.entPrestataireId">
+                                    <a [routerLink]="['/entreprise', recherche.entPrestataireId, 'view']">{{ recherche.entPrestataireName }}</a>
+                                </div>
+                            </dd>
                             <dt><span jhiTranslate="suiviRecherchesApp.recherche.contact">Contact</span></dt>
                             <dd>
                                 <div *ngIf="recherche.contactId">
@@ -28,18 +40,6 @@
                             <dt><span jhiTranslate="suiviRecherchesApp.recherche.location">Location</span></dt>
                             <dd>
                                 <span>{{ recherche.location }}</span>
-                            </dd>
-                            <dt><span jhiTranslate="suiviRecherchesApp.recherche.entPrestataire">Ent Prestataire</span></dt>
-                            <dd>
-                                <div *ngIf="recherche.entPrestataireId">
-                                    <a [routerLink]="['/entreprise', recherche.entPrestataireId, 'view']">{{ recherche.entPrestataireName }}</a>
-                                </div>
-                            </dd>
-                            <dt><span jhiTranslate="suiviRecherchesApp.recherche.entFinale">Ent Finale</span></dt>
-                            <dd>
-                                <div *ngIf="recherche.entFinaleId">
-                                    <a [routerLink]="['/entreprise', recherche.entFinaleId, 'view']">{{ recherche.entFinaleName }}</a>
-                                </div>
                             </dd>
                         </dl>
 
