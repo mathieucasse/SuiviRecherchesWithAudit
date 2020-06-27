@@ -25,6 +25,15 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
     </changeSet>
+    <changeSet id="20200627160600-1" author="jhipster">
+        <dropColumn tableName="entreprise" columnName="email" />
+        <dropColumn tableName="entreprise" columnName="phone_number" />
+        <addColumn tableName="entreprise" >
+            <column name="url" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
 
     <changeSet id="20200612190600-1-relations" author="jhipster">
 
