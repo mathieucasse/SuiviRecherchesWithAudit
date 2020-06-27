@@ -4,7 +4,7 @@
 
     <groupId>ch.matfly.suivirecherches</groupId>
     <artifactId>suivi-recherches</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.4-SNAPSHOT</version>
     <!-- Packaging : if war add provided to prod's spring-boot-starter-undertow-->
      <packaging>jar</packaging>
 <!--    <packaging>war</packaging>-->

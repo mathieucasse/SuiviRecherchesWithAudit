@@ -34,7 +34,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let recherche of recherches ;trackBy: trackId">
-                    <td>{{ recherche.date | localizedDate:'short' }}</td>
+                    <td>{{ recherche.date | localizedDate:'shortDate' }}</td>
                     <td jhiTranslate="{{ 'suiviRecherchesApp.ResOffreDeService.' + recherche.resoffredeservice }}">{{ recherche.resoffredeservice }}</td>
                     <td>{{ recherche.poste }}</td>
                     <td>

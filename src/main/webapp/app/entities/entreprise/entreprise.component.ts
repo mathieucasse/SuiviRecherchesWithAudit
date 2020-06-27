@@ -10,6 +10,7 @@ import { IEntreprise } from 'app/shared/model/entreprise.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { EntrepriseService } from './entreprise.service';
 import { EntrepriseDeleteDialogComponent } from './entreprise-delete-dialog.component';
+import { EntrepriseDetailDialogComponent } from './entreprise-detail-dialog.component';
 
 @Component({
   selector: 'jhi-entreprise',
@@ -76,6 +77,11 @@ export class EntrepriseComponent implements OnInit, OnDestroy {
 
   delete(entreprise: IEntreprise): void {
     const modalRef = this.modalService.open(EntrepriseDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.entreprise = entreprise;
+  }
+
+  view(entreprise: IEntreprise): void {
+    const modalRef = this.modalService.open(EntrepriseDetailDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.entreprise = entreprise;
   }
 
