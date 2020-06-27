@@ -32,7 +32,7 @@
                 <tr *ngFor="let entreprise of entreprises ;trackBy: trackId">
 <!--                    <td><a [routerLink]="['/entreprise', entreprise.id, 'view']">{{ entreprise.id }}</a></td>-->
                     <td>{{ entreprise.name }}</td>
-                    <td>{{ entreprise.url }}</td>
+                    <td><a href="{{ entreprise.url }}" target="_blank">{{ entreprise.url }}</a></td>
                     <td class="text-right">
                         <div class="btn-group">
 <!--                            <button type="submit"-->
