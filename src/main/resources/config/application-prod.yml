@@ -88,7 +88,7 @@ spring:
 #    port: 443
 #    ssl:
 #        key-store: classpath:config/tls/keystore.p12
-#        key-store-password: password
+#        key-store-password: ENC(cNz6c51MzqVbj2MLMmnF5MnHifa1w7A7)
 #        key-store-type: PKCS12
 #        key-alias: suivirecherches
 #        # The ciphers suite enforce the security by deactivating some old and deprecated SSL cipher, this list was tested against SSL Labs (https://www.ssllabs.com/ssltest/)
