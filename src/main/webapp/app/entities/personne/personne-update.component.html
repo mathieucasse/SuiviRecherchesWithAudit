@@ -6,44 +6,56 @@
             <div>
                 <jhi-alert-error></jhi-alert-error>
 
-                <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="suiviRecherchesApp.personne.firstName" for="field_firstName">First Name</label>
-                    <input type="text" class="form-control" name="firstName" id="field_firstName"
-                           formControlName="firstName"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="suiviRecherchesApp.personne.lastName" for="field_lastName">Last Name</label>
-                    <input type="text" class="form-control" name="lastName" id="field_lastName"
-                           formControlName="lastName"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="suiviRecherchesApp.personne.email" for="field_email">Email</label>
-                    <input type="text" class="form-control" name="email" id="field_email"
-                           formControlName="email"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="suiviRecherchesApp.personne.phoneNumber" for="field_phoneNumber">Phone Number</label>
-                    <input type="text" class="form-control" name="phoneNumber" id="field_phoneNumber"
-                           formControlName="phoneNumber"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="suiviRecherchesApp.personne.entreprise" for="field_entreprise">Entreprise</label>
-                    <select class="form-control" id="field_entreprise" name="entreprise" formControlName="entrepriseId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="entrepriseOption.id" *ngFor="let entrepriseOption of entreprises; trackBy: trackById">{{ entrepriseOption.name }}</option>
-                    </select>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                                <label for="id" jhiTranslate="global.field.id">ID</label>
+                                <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="suiviRecherchesApp.personne.firstName" for="field_firstName">First Name</label>
+                                <input type="text" class="form-control" name="firstName" id="field_firstName"
+                                       formControlName="firstName"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="suiviRecherchesApp.personne.lastName" for="field_lastName">Last Name</label>
+                                <input type="text" class="form-control" name="lastName" id="field_lastName"
+                                       formControlName="lastName"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="suiviRecherchesApp.personne.entreprise" for="field_entreprise">Entreprise</label>
+                                <select class="form-control" id="field_entreprise" name="entreprise" formControlName="entrepriseId">
+                                    <option [ngValue]="null"></option>
+                                    <option [ngValue]="entrepriseOption.id" *ngFor="let entrepriseOption of entreprises; trackBy: trackById">{{ entrepriseOption.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="suiviRecherchesApp.personne.email" for="field_email">Email</label>
+                                <input type="text" class="form-control" name="email" id="field_email"
+                                       formControlName="email"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="suiviRecherchesApp.personne.phoneNumber" for="field_phoneNumber">Phone Number</label>
+                                <input type="text" class="form-control" name="phoneNumber" id="field_phoneNumber"
+                                       formControlName="phoneNumber"/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
                     <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
