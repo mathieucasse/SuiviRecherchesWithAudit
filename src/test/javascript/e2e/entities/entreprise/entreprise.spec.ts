@@ -40,15 +40,10 @@ describe('Entreprise e2e test', () => {
 
     await entrepriseComponentsPage.clickOnCreateButton();
 
-    await promise.all([
-      entrepriseUpdatePage.setNameInput('name'),
-      entrepriseUpdatePage.setEmailInput('email'),
-      entrepriseUpdatePage.setPhoneNumberInput('phoneNumber')
-    ]);
+    await promise.all([entrepriseUpdatePage.setNameInput('name'), entrepriseUpdatePage.setUrlInput('url')]);
 
     expect(await entrepriseUpdatePage.getNameInput()).to.eq('name', 'Expected Name value to be equals to name');
-    expect(await entrepriseUpdatePage.getEmailInput()).to.eq('email', 'Expected Email value to be equals to email');
-    expect(await entrepriseUpdatePage.getPhoneNumberInput()).to.eq('phoneNumber', 'Expected PhoneNumber value to be equals to phoneNumber');
+    expect(await entrepriseUpdatePage.getUrlInput()).to.eq('url', 'Expected Url value to be equals to url');
 
     await entrepriseUpdatePage.save();
     expect(await entrepriseUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;

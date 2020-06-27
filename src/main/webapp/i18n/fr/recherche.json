@@ -18,6 +18,7 @@
       },
       "date": "Date",
       "poste": "Poste",
+      "desciptif": "Desciptif",
       "location": "Location",
       "assignationORP": "Assignation ORP",
       "txactivite": "% activite",

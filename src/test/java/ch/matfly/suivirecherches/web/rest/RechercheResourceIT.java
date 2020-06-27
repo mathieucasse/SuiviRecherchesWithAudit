@@ -19,11 +19,12 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 import static ch.matfly.suivirecherches.web.rest.TestUtil.createFormattingConversionService;
@@ -40,11 +41,14 @@ import ch.matfly.suivirecherches.domain.enumeration.ResOffreDeService;
 @SpringBootTest(classes = SuiviRecherchesApp.class)
 public class RechercheResourceIT {
 
-    private static final Instant DEFAULT_DATE = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final LocalDate DEFAULT_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DATE = LocalDate.now(ZoneId.systemDefault());
 
     private static final String DEFAULT_POSTE = "AAAAAAAAAA";
     private static final String UPDATED_POSTE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_DESCIPTIF = "AAAAAAAAAA";
+    private static final String UPDATED_DESCIPTIF = "BBBBBBBBBB";
 
     private static final String DEFAULT_LOCATION = "AAAAAAAAAA";
     private static final String UPDATED_LOCATION = "BBBBBBBBBB";
@@ -114,6 +118,7 @@ public class RechercheResourceIT {
         Recherche recherche = new Recherche()
             .date(DEFAULT_DATE)
             .poste(DEFAULT_POSTE)
+            .desciptif(DEFAULT_DESCIPTIF)
             .location(DEFAULT_LOCATION)
             .assignationORP(DEFAULT_ASSIGNATION_ORP)
             .txactivite(DEFAULT_TXACTIVITE)
@@ -132,6 +137,7 @@ public class RechercheResourceIT {
         Recherche recherche = new Recherche()
             .date(UPDATED_DATE)
             .poste(UPDATED_POSTE)
+            .desciptif(UPDATED_DESCIPTIF)
             .location(UPDATED_LOCATION)
             .assignationORP(UPDATED_ASSIGNATION_ORP)
             .txactivite(UPDATED_TXACTIVITE)
@@ -164,6 +170,7 @@ public class RechercheResourceIT {
         Recherche testRecherche = rechercheList.get(rechercheList.size() - 1);
         assertThat(testRecherche.getDate()).isEqualTo(DEFAULT_DATE);
         assertThat(testRecherche.getPoste()).isEqualTo(DEFAULT_POSTE);
+        assertThat(testRecherche.getDesciptif()).isEqualTo(DEFAULT_DESCIPTIF);
         assertThat(testRecherche.getLocation()).isEqualTo(DEFAULT_LOCATION);
         assertThat(testRecherche.isAssignationORP()).isEqualTo(DEFAULT_ASSIGNATION_ORP);
         assertThat(testRecherche.getTxactivite()).isEqualTo(DEFAULT_TXACTIVITE);
@@ -206,6 +213,7 @@ public class RechercheResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(recherche.getId().intValue())))
             .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
             .andExpect(jsonPath("$.[*].poste").value(hasItem(DEFAULT_POSTE)))
+            .andExpect(jsonPath("$.[*].desciptif").value(hasItem(DEFAULT_DESCIPTIF.toString())))
             .andExpect(jsonPath("$.[*].location").value(hasItem(DEFAULT_LOCATION)))
             .andExpect(jsonPath("$.[*].assignationORP").value(hasItem(DEFAULT_ASSIGNATION_ORP.booleanValue())))
             .andExpect(jsonPath("$.[*].txactivite").value(hasItem(DEFAULT_TXACTIVITE)))
@@ -227,6 +235,7 @@ public class RechercheResourceIT {
             .andExpect(jsonPath("$.id").value(recherche.getId().intValue()))
             .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
             .andExpect(jsonPath("$.poste").value(DEFAULT_POSTE))
+            .andExpect(jsonPath("$.desciptif").value(DEFAULT_DESCIPTIF.toString()))
             .andExpect(jsonPath("$.location").value(DEFAULT_LOCATION))
             .andExpect(jsonPath("$.assignationORP").value(DEFAULT_ASSIGNATION_ORP.booleanValue()))
             .andExpect(jsonPath("$.txactivite").value(DEFAULT_TXACTIVITE))
@@ -258,6 +267,7 @@ public class RechercheResourceIT {
         updatedRecherche
             .date(UPDATED_DATE)
             .poste(UPDATED_POSTE)
+            .desciptif(UPDATED_DESCIPTIF)
             .location(UPDATED_LOCATION)
             .assignationORP(UPDATED_ASSIGNATION_ORP)
             .txactivite(UPDATED_TXACTIVITE)
@@ -277,6 +287,7 @@ public class RechercheResourceIT {
         Recherche testRecherche = rechercheList.get(rechercheList.size() - 1);
         assertThat(testRecherche.getDate()).isEqualTo(UPDATED_DATE);
         assertThat(testRecherche.getPoste()).isEqualTo(UPDATED_POSTE);
+        assertThat(testRecherche.getDesciptif()).isEqualTo(UPDATED_DESCIPTIF);
         assertThat(testRecherche.getLocation()).isEqualTo(UPDATED_LOCATION);
         assertThat(testRecherche.isAssignationORP()).isEqualTo(UPDATED_ASSIGNATION_ORP);
         assertThat(testRecherche.getTxactivite()).isEqualTo(UPDATED_TXACTIVITE);

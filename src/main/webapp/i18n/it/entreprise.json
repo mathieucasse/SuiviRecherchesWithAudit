@@ -17,8 +17,7 @@
         "title": "Entreprise"
       },
       "name": "Name",
-      "email": "Email",
-      "phoneNumber": "Phone Number"
+      "url": "Url"
     }
   }
 }

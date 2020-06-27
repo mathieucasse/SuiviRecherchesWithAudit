@@ -18,8 +18,7 @@ export class EntrepriseUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     name: [],
-    email: [],
-    phoneNumber: []
+    url: []
   });
 
   constructor(protected entrepriseService: EntrepriseService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -34,8 +33,7 @@ export class EntrepriseUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: entreprise.id,
       name: entreprise.name,
-      email: entreprise.email,
-      phoneNumber: entreprise.phoneNumber
+      url: entreprise.url
     });
   }
 
@@ -58,8 +56,7 @@ export class EntrepriseUpdateComponent implements OnInit {
       ...new Entreprise(),
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
-      email: this.editForm.get(['email'])!.value,
-      phoneNumber: this.editForm.get(['phoneNumber'])!.value
+      url: this.editForm.get(['url'])!.value
     };
   }
 
