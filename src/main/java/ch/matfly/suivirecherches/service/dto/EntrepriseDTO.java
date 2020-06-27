@@ -12,9 +12,7 @@ public class EntrepriseDTO extends AbstractAuditingDTO implements Serializable {
 
     private String name;
 
-    private String email;
-
-    private String phoneNumber;
+    private String url;
 
 
     public Long getId() {
@@ -33,20 +31,12 @@ public class EntrepriseDTO extends AbstractAuditingDTO implements Serializable {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUrl() {
+        return url;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override
@@ -75,8 +65,7 @@ public class EntrepriseDTO extends AbstractAuditingDTO implements Serializable {
         return "EntrepriseDTO{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", phoneNumber='" + getPhoneNumber() + "'" +
+            ", url='" + getUrl() + "'" +
             "}";
     }
 }

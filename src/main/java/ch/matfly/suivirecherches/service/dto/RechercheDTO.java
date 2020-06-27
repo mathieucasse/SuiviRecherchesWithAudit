@@ -1,9 +1,10 @@
 package ch.matfly.suivirecherches.service.dto;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Lob;
 import ch.matfly.suivirecherches.domain.enumeration.OffreDeService;
 import ch.matfly.suivirecherches.domain.enumeration.ResOffreDeService;
 
@@ -14,9 +15,12 @@ public class RechercheDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 
-    private Instant date;
+    private LocalDate date;
 
     private String poste;
+
+    @Lob
+    private String desciptif;
 
     private String location;
 
@@ -53,11 +57,11 @@ public class RechercheDTO extends AbstractAuditingDTO implements Serializable {
         this.id = id;
     }
 
-    public Instant getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Instant date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -67,6 +71,14 @@ public class RechercheDTO extends AbstractAuditingDTO implements Serializable {
 
     public void setPoste(String poste) {
         this.poste = poste;
+    }
+
+    public String getDesciptif() {
+        return desciptif;
+    }
+
+    public void setDesciptif(String desciptif) {
+        this.desciptif = desciptif;
     }
 
     public String getLocation() {
@@ -192,6 +204,7 @@ public class RechercheDTO extends AbstractAuditingDTO implements Serializable {
             "id=" + getId() +
             ", date='" + getDate() + "'" +
             ", poste='" + getPoste() + "'" +
+            ", desciptif='" + getDesciptif() + "'" +
             ", location='" + getLocation() + "'" +
             ", assignationORP='" + isAssignationORP() + "'" +
             ", txactivite=" + getTxactivite() +

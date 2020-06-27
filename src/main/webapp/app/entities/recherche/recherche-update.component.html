@@ -13,8 +13,11 @@
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="suiviRecherchesApp.recherche.date" for="field_date">Date</label>
-                    <div class="d-flex">
-                        <input id="field_date" type="datetime-local" class="form-control" name="date" formControlName="date" placeholder="YYYY-MM-DD HH:mm"/>
+                    <div class="input-group">
+                        <input id="field_date" type="text" class="form-control" name="date" ngbDatepicker #dateDp="ngbDatepicker" formControlName="date"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
                     </div>
                 </div>
 
@@ -22,6 +25,12 @@
                     <label class="form-control-label" jhiTranslate="suiviRecherchesApp.recherche.poste" for="field_poste">Poste</label>
                     <input type="text" class="form-control" name="poste" id="field_poste"
                            formControlName="poste"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="suiviRecherchesApp.recherche.desciptif" for="field_desciptif">Desciptif</label>
+                    <textarea class="form-control" name="desciptif" id="field_desciptif"
+                              formControlName="desciptif"></textarea>
                 </div>
 
                 <div class="form-group">
@@ -62,6 +71,8 @@
                         <option value="Email">{{ 'suiviRecherchesApp.OffreDeService.Email' | translate }}</option>
                         <option value="Visite">{{ 'suiviRecherchesApp.OffreDeService.Visite' | translate }}</option>
                         <option value="Phone">{{ 'suiviRecherchesApp.OffreDeService.Phone' | translate }}</option>
+                        <option value="LinkedIn">{{ 'suiviRecherchesApp.OffreDeService.LinkedIn' | translate }}</option>
+                        <option value="JobUp">{{ 'suiviRecherchesApp.OffreDeService.JobUp' | translate }}</option>
                     </select>
                 </div>
 

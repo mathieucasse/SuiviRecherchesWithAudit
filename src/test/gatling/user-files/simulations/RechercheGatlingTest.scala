@@ -74,6 +74,7 @@ class RechercheGatlingTest extends Simulation {
                 "id":null
                 , "date":"2020-01-01T00:00:00.000Z"
                 , "poste":"SAMPLE_TEXT"
+                , "desciptif":null
                 , "location":"SAMPLE_TEXT"
                 , "assignationORP":null
                 , "txactivite":"0"

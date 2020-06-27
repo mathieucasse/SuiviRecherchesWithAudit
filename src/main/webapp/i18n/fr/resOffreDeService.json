@@ -2,7 +2,7 @@
   "suiviRecherchesApp": {
     "ResOffreDeService": {
       "null": "",
-      "EnCours": "EnCours",
+      "EnCours": "En Cours",
       "Entretien": "Entretien",
       "Engagement": "Engagement",
       "Negatif": "Negatif"

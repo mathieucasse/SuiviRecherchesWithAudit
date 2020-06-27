@@ -19,10 +19,7 @@
             <column name="name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="email" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="phone_number" type="varchar(255)">
+            <column name="url" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
@@ -32,14 +29,14 @@
     <changeSet id="20200612190600-1-relations" author="jhipster">
 
     </changeSet>
-
+    
     <!-- Added the entity audit columns -->
-    <changeSet id="20200612190721-audit-1" author="jhipster-entity-audit">
+    <changeSet id="20200612190600-audit-1" author="jhipster-entity-audit">
         <addColumn tableName="entreprise">
             <column name="created_by" type="varchar(50)" defaultValue="system">
                 <constraints nullable="false"/>
             </column>
-            <column name="created_date" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+            <column name="created_date" type="timestamp" defaultValueDate="${now}">
                 <constraints nullable="false"/>
             </column>
             <column name="last_modified_by" type="varchar(50)"/>
@@ -63,8 +60,7 @@
                   tableName="entreprise">
             <column name="id" type="numeric"/>
             <column name="name" type="string"/>
-            <column name="email" type="string"/>
-            <column name="phone_number" type="string"/>
+            <column name="url" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

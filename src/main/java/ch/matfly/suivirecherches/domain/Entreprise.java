@@ -24,11 +24,8 @@ public class Entreprise extends AbstractAuditingEntity implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "phone_number")
-    private String phoneNumber;
+    @Column(name = "url")
+    private String url;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -52,30 +49,17 @@ public class Entreprise extends AbstractAuditingEntity implements Serializable {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUrl() {
+        return url;
     }
 
-    public Entreprise email(String email) {
-        this.email = email;
+    public Entreprise url(String url) {
+        this.url = url;
         return this;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public Entreprise phoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-        return this;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setUrl(String url) {
+        this.url = url;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -100,8 +84,7 @@ public class Entreprise extends AbstractAuditingEntity implements Serializable {
         return "Entreprise{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", phoneNumber='" + getPhoneNumber() + "'" +
+            ", url='" + getUrl() + "'" +
             "}";
     }
 }

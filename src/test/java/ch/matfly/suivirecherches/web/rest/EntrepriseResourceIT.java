@@ -39,11 +39,8 @@ public class EntrepriseResourceIT {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
-    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
-
-    private static final String DEFAULT_PHONE_NUMBER = "AAAAAAAAAA";
-    private static final String UPDATED_PHONE_NUMBER = "BBBBBBBBBB";
+    private static final String DEFAULT_URL = "AAAAAAAAAA";
+    private static final String UPDATED_URL = "BBBBBBBBBB";
 
     @Autowired
     private EntrepriseRepository entrepriseRepository;
@@ -94,8 +91,7 @@ public class EntrepriseResourceIT {
     public static Entreprise createEntity(EntityManager em) {
         Entreprise entreprise = new Entreprise()
             .name(DEFAULT_NAME)
-            .email(DEFAULT_EMAIL)
-            .phoneNumber(DEFAULT_PHONE_NUMBER);
+            .url(DEFAULT_URL);
         return entreprise;
     }
     /**
@@ -107,8 +103,7 @@ public class EntrepriseResourceIT {
     public static Entreprise createUpdatedEntity(EntityManager em) {
         Entreprise entreprise = new Entreprise()
             .name(UPDATED_NAME)
-            .email(UPDATED_EMAIL)
-            .phoneNumber(UPDATED_PHONE_NUMBER);
+            .url(UPDATED_URL);
         return entreprise;
     }
 
@@ -134,8 +129,7 @@ public class EntrepriseResourceIT {
         assertThat(entrepriseList).hasSize(databaseSizeBeforeCreate + 1);
         Entreprise testEntreprise = entrepriseList.get(entrepriseList.size() - 1);
         assertThat(testEntreprise.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testEntreprise.getEmail()).isEqualTo(DEFAULT_EMAIL);
-        assertThat(testEntreprise.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
+        assertThat(testEntreprise.getUrl()).isEqualTo(DEFAULT_URL);
     }
 
     @Test
@@ -171,8 +165,7 @@ public class EntrepriseResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(entreprise.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
-            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER)));
+            .andExpect(jsonPath("$.[*].url").value(hasItem(DEFAULT_URL)));
     }
     
     @Test
@@ -187,8 +180,7 @@ public class EntrepriseResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(entreprise.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
-            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
-            .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER));
+            .andExpect(jsonPath("$.url").value(DEFAULT_URL));
     }
 
     @Test
@@ -213,8 +205,7 @@ public class EntrepriseResourceIT {
         em.detach(updatedEntreprise);
         updatedEntreprise
             .name(UPDATED_NAME)
-            .email(UPDATED_EMAIL)
-            .phoneNumber(UPDATED_PHONE_NUMBER);
+            .url(UPDATED_URL);
         EntrepriseDTO entrepriseDTO = entrepriseMapper.toDto(updatedEntreprise);
 
         restEntrepriseMockMvc.perform(put("/api/entreprises")
@@ -227,8 +218,7 @@ public class EntrepriseResourceIT {
         assertThat(entrepriseList).hasSize(databaseSizeBeforeUpdate);
         Entreprise testEntreprise = entrepriseList.get(entrepriseList.size() - 1);
         assertThat(testEntreprise.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testEntreprise.getEmail()).isEqualTo(UPDATED_EMAIL);
-        assertThat(testEntreprise.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
+        assertThat(testEntreprise.getUrl()).isEqualTo(UPDATED_URL);
     }
 
     @Test

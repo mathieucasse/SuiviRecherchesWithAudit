@@ -15,6 +15,10 @@
                             <dd>
                                 <span>{{ recherche.date | localizedDate:'short' }}</span>
                             </dd>
+                            <dt><span jhiTranslate="suiviRecherchesApp.recherche.resoffredeservice">Resoffredeservice</span></dt>
+                            <dd>
+                                <span jhiTranslate="{{ 'suiviRecherchesApp.ResOffreDeService.' + recherche.resoffredeservice }}">{{ recherche.resoffredeservice }}</span>
+                            </dd>
                             <dt><span jhiTranslate="suiviRecherchesApp.recherche.poste">Poste</span></dt>
                             <dd>
                                 <span>{{ recherche.poste }}</span>
@@ -46,6 +50,10 @@
                     </div>
                     <div class="col">
                         <dl>
+                            <dt><span jhiTranslate="suiviRecherchesApp.recherche.desciptif">Desciptif</span></dt>
+                            <dd>
+                                <span>{{ recherche.desciptif }}</span>
+                            </dd>
                             <dt><span jhiTranslate="suiviRecherchesApp.recherche.assignationORP">Assignation ORP</span></dt>
                             <dd>
                                 <span>{{ recherche.assignationORP }}</span>
@@ -57,10 +65,6 @@
                             <dt><span jhiTranslate="suiviRecherchesApp.recherche.offredeservice">Offredeservice</span></dt>
                             <dd>
                                 <span jhiTranslate="{{ 'suiviRecherchesApp.OffreDeService.' + recherche.offredeservice }}">{{ recherche.offredeservice }}</span>
-                            </dd>
-                            <dt><span jhiTranslate="suiviRecherchesApp.recherche.resoffredeservice">Resoffredeservice</span></dt>
-                            <dd>
-                                <span jhiTranslate="{{ 'suiviRecherchesApp.ResOffreDeService.' + recherche.resoffredeservice }}">{{ recherche.resoffredeservice }}</span>
                             </dd>
                             <dt><span jhiTranslate="suiviRecherchesApp.recherche.motifres">Motifres</span></dt>
                             <dd>

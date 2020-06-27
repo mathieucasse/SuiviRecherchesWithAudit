@@ -1,4 +1,4 @@
-import { browser, ExpectedConditions as ec, protractor, promise } from 'protractor';
+import { browser, ExpectedConditions as ec, promise } from 'protractor';
 import { NavBarPage, SignInPage } from '../../page-objects/jhi-page-objects';
 
 import { RechercheComponentsPage, RechercheDeleteDialog, RechercheUpdatePage } from './recherche.page-object';
@@ -41,8 +41,9 @@ describe('Recherche e2e test', () => {
     await rechercheComponentsPage.clickOnCreateButton();
 
     await promise.all([
-      rechercheUpdatePage.setDateInput('01/01/2001' + protractor.Key.TAB + '02:30AM'),
+      rechercheUpdatePage.setDateInput('2000-12-31'),
       rechercheUpdatePage.setPosteInput('poste'),
+      rechercheUpdatePage.setDesciptifInput('desciptif'),
       rechercheUpdatePage.setLocationInput('location'),
       rechercheUpdatePage.setTxactiviteInput('5'),
       rechercheUpdatePage.offredeserviceSelectLastOption(),
@@ -53,8 +54,9 @@ describe('Recherche e2e test', () => {
       rechercheUpdatePage.contactSelectLastOption()
     ]);
 
-    expect(await rechercheUpdatePage.getDateInput()).to.contain('2001-01-01T02:30', 'Expected date value to be equals to 2000-12-31');
+    expect(await rechercheUpdatePage.getDateInput()).to.eq('2000-12-31', 'Expected date value to be equals to 2000-12-31');
     expect(await rechercheUpdatePage.getPosteInput()).to.eq('poste', 'Expected Poste value to be equals to poste');
+    expect(await rechercheUpdatePage.getDesciptifInput()).to.eq('desciptif', 'Expected Desciptif value to be equals to desciptif');
     expect(await rechercheUpdatePage.getLocationInput()).to.eq('location', 'Expected Location value to be equals to location');
     const selectedAssignationORP = rechercheUpdatePage.getAssignationORPInput();
     if (await selectedAssignationORP.isSelected()) {

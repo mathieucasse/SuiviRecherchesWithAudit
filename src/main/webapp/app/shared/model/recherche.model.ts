@@ -6,6 +6,7 @@ export interface IRecherche {
   id?: number;
   date?: Moment;
   poste?: string;
+  desciptif?: any;
   location?: string;
   assignationORP?: boolean;
   txactivite?: number;
@@ -25,6 +26,7 @@ export class Recherche implements IRecherche {
     public id?: number,
     public date?: Moment,
     public poste?: string,
+    public desciptif?: any,
     public location?: string,
     public assignationORP?: boolean,
     public txactivite?: number,

@@ -112,6 +112,12 @@ To package your application as a war in order to deploy it to an application ser
 
     ./mvnw -Pprod,war clean verify
 
+## Release
+
+To release your application
+
+    ./mvnw -Pprod release:prepare -Dresume=false
+
 ## Testing
 
 To launch your application's tests, run:

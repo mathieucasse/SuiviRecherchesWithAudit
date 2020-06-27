@@ -31,6 +31,7 @@ export class RechercheUpdatePage {
 
   dateInput = element(by.id('field_date'));
   posteInput = element(by.id('field_poste'));
+  desciptifInput = element(by.id('field_desciptif'));
   locationInput = element(by.id('field_location'));
   assignationORPInput = element(by.id('field_assignationORP'));
   txactiviteInput = element(by.id('field_txactivite'));
@@ -60,6 +61,14 @@ export class RechercheUpdatePage {
 
   async getPosteInput(): Promise<string> {
     return await this.posteInput.getAttribute('value');
+  }
+
+  async setDesciptifInput(desciptif: string): Promise<void> {
+    await this.desciptifInput.sendKeys(desciptif);
+  }
+
+  async getDesciptifInput(): Promise<string> {
+    return await this.desciptifInput.getAttribute('value');
   }
 
   async setLocationInput(location: string): Promise<void> {

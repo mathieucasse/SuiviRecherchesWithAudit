@@ -4,11 +4,11 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
-import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } from 'ng-jhipster';
 
 import { IRecherche, Recherche } from 'app/shared/model/recherche.model';
 import { RechercheService } from './recherche.service';
+import { AlertError } from 'app/shared/alert/alert-error.model';
 import { IEntreprise } from 'app/shared/model/entreprise.model';
 import { EntrepriseService } from 'app/entities/entreprise/entreprise.service';
 import { IPersonne } from 'app/shared/model/personne.model';
@@ -24,11 +24,13 @@ export class RechercheUpdateComponent implements OnInit {
   isSaving = false;
   entreprises: IEntreprise[] = [];
   personnes: IPersonne[] = [];
+  dateDp: any;
 
   editForm = this.fb.group({
     id: [],
     date: [],
     poste: [],
+    desciptif: [],
     location: [],
     assignationORP: [],
     txactivite: [null, [Validators.min(1), Validators.max(100)]],
@@ -41,6 +43,8 @@ export class RechercheUpdateComponent implements OnInit {
   });
 
   constructor(
+    protected dataUtils: JhiDataUtils,
+    protected eventManager: JhiEventManager,
     protected rechercheService: RechercheService,
     protected entrepriseService: EntrepriseService,
     protected personneService: PersonneService,
@@ -50,11 +54,6 @@ export class RechercheUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ recherche }) => {
-      if (!recherche.id) {
-        const today = moment().startOf('day');
-        recherche.date = today;
-      }
-
       this.updateForm(recherche);
 
       this.entrepriseService.query().subscribe((res: HttpResponse<IEntreprise[]>) => (this.entreprises = res.body || []));
@@ -66,8 +65,9 @@ export class RechercheUpdateComponent implements OnInit {
   updateForm(recherche: IRecherche): void {
     this.editForm.patchValue({
       id: recherche.id,
-      date: recherche.date ? recherche.date.format(DATE_TIME_FORMAT) : null,
+      date: recherche.date,
       poste: recherche.poste,
+      desciptif: recherche.desciptif,
       location: recherche.location,
       assignationORP: recherche.assignationORP,
       txactivite: recherche.txactivite,
@@ -77,6 +77,22 @@ export class RechercheUpdateComponent implements OnInit {
       entPrestataireId: recherche.entPrestataireId,
       entFinaleId: recherche.entFinaleId,
       contactId: recherche.contactId
+    });
+  }
+
+  byteSize(base64String: string): string {
+    return this.dataUtils.byteSize(base64String);
+  }
+
+  openFile(contentType: string, base64String: string): void {
+    this.dataUtils.openFile(contentType, base64String);
+  }
+
+  setFileData(event: Event, field: string, isImage: boolean): void {
+    this.dataUtils.loadFileToForm(event, this.editForm, field, isImage).subscribe(null, (err: JhiFileLoadError) => {
+      this.eventManager.broadcast(
+        new JhiEventWithContent<AlertError>('suiviRecherchesApp.error', { ...err, key: 'error.file.' + err.key })
+      );
     });
   }
 
@@ -98,8 +114,9 @@ export class RechercheUpdateComponent implements OnInit {
     return {
       ...new Recherche(),
       id: this.editForm.get(['id'])!.value,
-      date: this.editForm.get(['date'])!.value ? moment(this.editForm.get(['date'])!.value, DATE_TIME_FORMAT) : undefined,
+      date: this.editForm.get(['date'])!.value,
       poste: this.editForm.get(['poste'])!.value,
+      desciptif: this.editForm.get(['desciptif'])!.value,
       location: this.editForm.get(['location'])!.value,
       assignationORP: this.editForm.get(['assignationORP'])!.value,
       txactivite: this.editForm.get(['txactivite'])!.value,

@@ -8,7 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDate;
 
 import ch.matfly.suivirecherches.domain.enumeration.OffreDeService;
 
@@ -29,10 +29,14 @@ public class Recherche extends AbstractAuditingEntity implements Serializable {
     private Long id;
 
     @Column(name = "date")
-    private Instant date;
+    private LocalDate date;
 
     @Column(name = "poste")
     private String poste;
+
+    @Lob
+    @Column(name = "desciptif")
+    private String desciptif;
 
     @Column(name = "location")
     private String location;
@@ -77,16 +81,16 @@ public class Recherche extends AbstractAuditingEntity implements Serializable {
         this.id = id;
     }
 
-    public Instant getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public Recherche date(Instant date) {
+    public Recherche date(LocalDate date) {
         this.date = date;
         return this;
     }
 
-    public void setDate(Instant date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -101,6 +105,19 @@ public class Recherche extends AbstractAuditingEntity implements Serializable {
 
     public void setPoste(String poste) {
         this.poste = poste;
+    }
+
+    public String getDesciptif() {
+        return desciptif;
+    }
+
+    public Recherche desciptif(String desciptif) {
+        this.desciptif = desciptif;
+        return this;
+    }
+
+    public void setDesciptif(String desciptif) {
+        this.desciptif = desciptif;
     }
 
     public String getLocation() {
@@ -243,6 +260,7 @@ public class Recherche extends AbstractAuditingEntity implements Serializable {
             "id=" + getId() +
             ", date='" + getDate() + "'" +
             ", poste='" + getPoste() + "'" +
+            ", desciptif='" + getDesciptif() + "'" +
             ", location='" + getLocation() + "'" +
             ", assignationORP='" + isAssignationORP() + "'" +
             ", txactivite=" + getTxactivite() +
