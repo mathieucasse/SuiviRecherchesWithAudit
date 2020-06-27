@@ -114,9 +114,17 @@ To package your application as a war in order to deploy it to an application ser
 
 ## Release
 
-To release your application
+### Releasing as jar
+
+To release your application as jar, run :
 
     ./mvnw -Pprod release:prepare -Dresume=false
+
+### Releasing as war
+
+To release your application as war, run :
+
+    ./mvnw -Pprod,war release:prepare -Dresume=false
 
 ## Testing
 
