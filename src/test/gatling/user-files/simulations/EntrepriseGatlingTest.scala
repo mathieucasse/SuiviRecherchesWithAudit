@@ -73,8 +73,7 @@ class EntrepriseGatlingTest extends Simulation {
             .body(StringBody("""{
                 "id":null
                 , "name":"SAMPLE_TEXT"
-                , "email":"SAMPLE_TEXT"
-                , "phoneNumber":"SAMPLE_TEXT"
+                , "url":"SAMPLE_TEXT"
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_entreprise_url"))).exitHereIfFailed

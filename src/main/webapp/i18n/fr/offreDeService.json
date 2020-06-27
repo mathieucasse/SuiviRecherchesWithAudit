@@ -4,7 +4,9 @@
       "null": "",
       "Email": "Email",
       "Visite": "Visite",
-      "Phone": "Telephone"
+      "Phone": "Téléphone",
+      "LinkedIn": "LinkedIn",
+      "JobUp": "JobUp"
     }
   }
 }

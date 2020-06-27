@@ -1,38 +1,36 @@
-
-entity Entreprise {
-	name String,
-	email String,
-	phoneNumber String,
-}
-entity Personne {
-	firstName String,
-	lastName String,
-	email String,
-	phoneNumber String
+entity Entreprise{
+	name String
+    url String
 }
 enum OffreDeService{
-    Email, Visite, Phone
+    Email, Visite, Phone, LinkedIn, JobUp
 }
 enum ResOffreDeService{
     EnCours, Entretien, Engagement, Negatif
 }
+entity Personne{
+	firstName String
+    lastName String
+    email String
+    phoneNumber String
+}
 entity Recherche{
-	date Instant, 
-    poste String,
-    location String,
-    assignationORP Boolean,
-    txactivite Integer min(1) max(100),
-    offredeservice OffreDeService,
-    resoffredeservice ResOffreDeService,
+	date LocalDate
+    poste String
+    desciptif TextBlob
+    location String
+    assignationORP Boolean
+    txactivite Integer min(1) max(100)
+    offredeservice OffreDeService
+    resoffredeservice ResOffreDeService
     motifres String
 }
-relationship ManyToOne {
+relationship ManyToOne{
 	Recherche{entPrestataire(name)} to Entreprise,
     Recherche{entFinale(name)} to Entreprise,
     Recherche{contact(lastName)} to Personne,
     Personne{entreprise(name)} to Entreprise
 }
-
 
 // Set pagination options
 paginate Recherche, Entreprise, Personne with infinite-scroll

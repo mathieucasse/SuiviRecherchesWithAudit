@@ -1,7 +1,7 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import * as moment from 'moment';
-import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { RechercheService } from 'app/entities/recherche/recherche.service';
 import { IRecherche, Recherche } from 'app/shared/model/recherche.model';
 import { OffreDeService } from 'app/shared/model/enumerations/offre-de-service.model';
@@ -31,6 +31,7 @@ describe('Service Tests', () => {
         currentDate,
         'AAAAAAA',
         'AAAAAAA',
+        'AAAAAAA',
         false,
         0,
         OffreDeService.Email,
@@ -43,7 +44,7 @@ describe('Service Tests', () => {
       it('should find an element', () => {
         const returnedFromService = Object.assign(
           {
-            date: currentDate.format(DATE_TIME_FORMAT)
+            date: currentDate.format(DATE_FORMAT)
           },
           elemDefault
         );
@@ -59,7 +60,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 0,
-            date: currentDate.format(DATE_TIME_FORMAT)
+            date: currentDate.format(DATE_FORMAT)
           },
           elemDefault
         );
@@ -81,8 +82,9 @@ describe('Service Tests', () => {
       it('should update a Recherche', () => {
         const returnedFromService = Object.assign(
           {
-            date: currentDate.format(DATE_TIME_FORMAT),
+            date: currentDate.format(DATE_FORMAT),
             poste: 'BBBBBB',
+            desciptif: 'BBBBBB',
             location: 'BBBBBB',
             assignationORP: true,
             txactivite: 1,
@@ -110,8 +112,9 @@ describe('Service Tests', () => {
       it('should return a list of Recherche', () => {
         const returnedFromService = Object.assign(
           {
-            date: currentDate.format(DATE_TIME_FORMAT),
+            date: currentDate.format(DATE_FORMAT),
             poste: 'BBBBBB',
+            desciptif: 'BBBBBB',
             location: 'BBBBBB',
             assignationORP: true,
             txactivite: 1,

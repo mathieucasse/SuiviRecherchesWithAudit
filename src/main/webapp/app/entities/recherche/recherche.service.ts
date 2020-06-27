@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 
+import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { IRecherche } from 'app/shared/model/recherche.model';
@@ -50,7 +51,7 @@ export class RechercheService {
 
   protected convertDateFromClient(recherche: IRecherche): IRecherche {
     const copy: IRecherche = Object.assign({}, recherche, {
-      date: recherche.date && recherche.date.isValid() ? recherche.date.toJSON() : undefined
+      date: recherche.date && recherche.date.isValid() ? recherche.date.format(DATE_FORMAT) : undefined
     });
     return copy;
   }

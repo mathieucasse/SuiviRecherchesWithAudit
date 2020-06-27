@@ -30,8 +30,7 @@ export class EntrepriseUpdatePage {
   cancelButton = element(by.id('cancel-save'));
 
   nameInput = element(by.id('field_name'));
-  emailInput = element(by.id('field_email'));
-  phoneNumberInput = element(by.id('field_phoneNumber'));
+  urlInput = element(by.id('field_url'));
 
   async getPageTitle(): Promise<string> {
     return this.pageTitle.getAttribute('jhiTranslate');
@@ -45,20 +44,12 @@ export class EntrepriseUpdatePage {
     return await this.nameInput.getAttribute('value');
   }
 
-  async setEmailInput(email: string): Promise<void> {
-    await this.emailInput.sendKeys(email);
+  async setUrlInput(url: string): Promise<void> {
+    await this.urlInput.sendKeys(url);
   }
 
-  async getEmailInput(): Promise<string> {
-    return await this.emailInput.getAttribute('value');
-  }
-
-  async setPhoneNumberInput(phoneNumber: string): Promise<void> {
-    await this.phoneNumberInput.sendKeys(phoneNumber);
-  }
-
-  async getPhoneNumberInput(): Promise<string> {
-    return await this.phoneNumberInput.getAttribute('value');
+  async getUrlInput(): Promise<string> {
+    return await this.urlInput.getAttribute('value');
   }
 
   async save(): Promise<void> {
