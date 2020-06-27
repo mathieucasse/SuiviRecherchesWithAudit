@@ -4,4 +4,12 @@ import { Component } from '@angular/core';
   selector: 'jhi-footer',
   templateUrl: './footer.component.html'
 })
-export class FooterComponent {}
+export class FooterComponent {
+  public now: Date = new Date();
+
+  constructor() {
+    setInterval(() => {
+      this.now = new Date();
+    }, 100);
+  }
+}

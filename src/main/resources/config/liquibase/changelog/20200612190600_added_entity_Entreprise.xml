@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
-                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
-        <property name="autoIncrement" value="true"/>
+    <property name="autoIncrement" value="true"/>
 
     <!--
         Added the entity Entreprise.
@@ -19,7 +17,10 @@
             <column name="name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="url" type="varchar(255)">
+            <column name="email" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="phone_number" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
@@ -38,14 +39,14 @@
     <changeSet id="20200612190600-1-relations" author="jhipster">
 
     </changeSet>
-    
+
     <!-- Added the entity audit columns -->
-    <changeSet id="20200612190600-audit-1" author="jhipster-entity-audit">
+    <changeSet id="20200612190721-audit-1" author="jhipster-entity-audit">
         <addColumn tableName="entreprise">
             <column name="created_by" type="varchar(50)" defaultValue="system">
                 <constraints nullable="false"/>
             </column>
-            <column name="created_date" type="timestamp" defaultValueDate="${now}">
+            <column name="created_date" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
             <column name="last_modified_by" type="varchar(50)"/>
@@ -64,9 +65,9 @@
     -->
     <changeSet id="20200612190600-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/entreprise.csv"
-                  separator=";"
-                  tableName="entreprise">
+            file="config/liquibase/fake-data/entreprise.csv"
+            separator=";"
+            tableName="entreprise">
             <column name="id" type="numeric"/>
             <column name="name" type="string"/>
             <column name="url" type="string"/>
