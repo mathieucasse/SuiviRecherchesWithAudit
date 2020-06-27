@@ -16,13 +16,10 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="date" type="date">
+            <column name="date" type="datetime">
                 <constraints nullable="true" />
             </column>
             <column name="poste" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="desciptif" type="${clobType}">
                 <constraints nullable="true" />
             </column>
             <column name="location" type="varchar(255)">
@@ -56,17 +53,26 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="202006271629000-1" author="mathieu">
+        <addColumn tableName="recherche">
+            <column name="desciptif" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+        <modifyDataType tableName="recherche" columnName="date" newDataType="date" />
+    </changeSet>
+
     <changeSet id="20200612190800-1-relations" author="jhipster">
 
     </changeSet>
 
     <!-- Added the entity audit columns -->
-    <changeSet id="20200612190800-audit-1" author="jhipster-entity-audit">
+    <changeSet id="20200612190721-audit-1" author="jhipster-entity-audit">
         <addColumn tableName="recherche">
             <column name="created_by" type="varchar(50)" defaultValue="system">
                 <constraints nullable="false"/>
             </column>
-            <column name="created_date" type="timestamp" defaultValueDate="CURRENT_TIMESTAMP">
+            <column name="created_date" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
             <column name="last_modified_by" type="varchar(50)"/>
