@@ -14,10 +14,18 @@
                             <dd>
                                 <span>{{ personne.lastName }}</span>
                             </dd>
+                        </dl>
+                    </div>
+                    <div class="col">
+                        <dl class="row-md jh-entity-details">
                             <dt><span jhiTranslate="suiviRecherchesApp.personne.firstName">First Name</span></dt>
                             <dd>
                                 <span>{{ personne.firstName }}</span>
                             </dd>
+                        </dl>
+                    </div>
+                    <div class="col">
+                        <dl class="row-md jh-entity-details">
                             <dt><span jhiTranslate="suiviRecherchesApp.personne.entreprise">Entreprise</span></dt>
                             <dd>
                                 <div *ngIf="personne.entrepriseId">
@@ -26,17 +34,22 @@
                             </dd>
                         </dl>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col">
                         <dl class="row-md jh-entity-details">
                             <dt><span jhiTranslate="suiviRecherchesApp.personne.email">Email</span></dt>
                             <dd>
                                 <span>{{ personne.email }}</span>
                             </dd>
+                        </dl>
+                    </div>
+                    <div class="col">
+                        <dl class="row-md jh-entity-details">
                             <dt><span jhiTranslate="suiviRecherchesApp.personne.phoneNumber">Phone Number</span></dt>
                             <dd>
                                 <span>{{ personne.phoneNumber }}</span>
                             </dd>
-
                         </dl>
                     </div>
                 </div>

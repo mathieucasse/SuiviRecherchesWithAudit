@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
-                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
-        <property name="autoIncrement" value="true"/>
+    <property name="autoIncrement" value="true"/>
 
     <!--
         Added the entity Recherche.
@@ -91,9 +89,9 @@
     -->
     <changeSet id="20200612190800-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/recherche.csv"
-                  separator=";"
-                  tableName="recherche">
+            file="config/liquibase/fake-data/recherche.csv"
+            separator=";"
+            tableName="recherche">
             <column name="id" type="numeric"/>
             <column name="date" type="date"/>
             <column name="poste" type="string"/>
