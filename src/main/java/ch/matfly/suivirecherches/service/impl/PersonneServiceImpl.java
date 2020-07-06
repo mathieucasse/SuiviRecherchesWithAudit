@@ -1,13 +1,12 @@
 package ch.matfly.suivirecherches.service.impl;
 
-import ch.matfly.suivirecherches.service.PersonneService;
 import ch.matfly.suivirecherches.domain.Personne;
 import ch.matfly.suivirecherches.repository.PersonneRepository;
+import ch.matfly.suivirecherches.service.PersonneService;
 import ch.matfly.suivirecherches.service.dto.PersonneDTO;
 import ch.matfly.suivirecherches.service.mapper.PersonneMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -57,7 +56,7 @@ public class PersonneServiceImpl implements PersonneService {
     @Transactional(readOnly = true)
     public Page<PersonneDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Personnes");
-        return personneRepository.findAll(pageable)
+        return personneRepository.findAllByOrderByLastName(pageable)
             .map(personneMapper::toDto);
     }
 
