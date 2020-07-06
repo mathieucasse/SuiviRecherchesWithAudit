@@ -13,6 +13,7 @@ export interface IRecherche {
   offredeservice?: OffreDeService;
   resoffredeservice?: ResOffreDeService;
   motifres?: string;
+  userId?: number;
   entPrestataireName?: string;
   entPrestataireId?: number;
   entFinaleName?: string;
@@ -33,6 +34,7 @@ export class Recherche implements IRecherche {
     public offredeservice?: OffreDeService,
     public resoffredeservice?: ResOffreDeService,
     public motifres?: string,
+    public userId?: number,
     public entPrestataireName?: string,
     public entPrestataireId?: number,
     public entFinaleName?: string,

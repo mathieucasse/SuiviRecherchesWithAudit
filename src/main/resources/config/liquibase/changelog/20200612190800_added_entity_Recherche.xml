@@ -64,6 +64,14 @@
 
     </changeSet>
 
+    <changeSet id="20200630235800-1" author="jhipster">
+        <addColumn tableName="recherche">
+            <column name="user_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+
     <!-- Added the entity audit columns -->
     <changeSet id="20200612190721-audit-1" author="jhipster-entity-audit">
         <addColumn tableName="recherche">

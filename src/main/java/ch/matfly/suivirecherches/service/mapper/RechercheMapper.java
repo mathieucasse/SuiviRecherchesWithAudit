@@ -1,17 +1,18 @@
 package ch.matfly.suivirecherches.service.mapper;
 
 
-import ch.matfly.suivirecherches.domain.*;
+import ch.matfly.suivirecherches.domain.Recherche;
 import ch.matfly.suivirecherches.service.dto.RechercheDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity {@link Recherche} and its DTO {@link RechercheDTO}.
  */
-@Mapper(componentModel = "spring", uses = {EntrepriseMapper.class, PersonneMapper.class})
+@Mapper(componentModel = "spring", uses = {UserMapper.class, EntrepriseMapper.class, PersonneMapper.class})
 public interface RechercheMapper extends EntityMapper<RechercheDTO, Recherche> {
 
+    @Mapping(source = "user.id", target = "userId")
     @Mapping(source = "entPrestataire.id", target = "entPrestataireId")
     @Mapping(source = "entPrestataire.name", target = "entPrestataireName")
     @Mapping(source = "entFinale.id", target = "entFinaleId")
@@ -20,6 +21,7 @@ public interface RechercheMapper extends EntityMapper<RechercheDTO, Recherche> {
     @Mapping(source = "contact.lastName", target = "contactLastName")
     RechercheDTO toDto(Recherche recherche);
 
+    @Mapping(source = "userId", target = "user")
     @Mapping(source = "entPrestataireId", target = "entPrestataire")
     @Mapping(source = "entFinaleId", target = "entFinale")
     @Mapping(source = "contactId", target = "contact")

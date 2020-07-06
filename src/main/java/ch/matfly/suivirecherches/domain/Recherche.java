@@ -1,18 +1,16 @@
 package ch.matfly.suivirecherches.domain;
 
+import ch.matfly.suivirecherches.domain.enumeration.OffreDeService;
+import ch.matfly.suivirecherches.domain.enumeration.ResOffreDeService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.time.LocalDate;
-
-import ch.matfly.suivirecherches.domain.enumeration.OffreDeService;
-
-import ch.matfly.suivirecherches.domain.enumeration.ResOffreDeService;
 
 /**
  * A Recherche.
@@ -59,6 +57,10 @@ public class Recherche extends AbstractAuditingEntity implements Serializable {
 
     @Column(name = "motifres")
     private String motifres;
+
+    @ManyToOne
+    @JsonIgnoreProperties("recherches")
+    private User user;
 
     @ManyToOne
     @JsonIgnoreProperties("recherches")
@@ -196,6 +198,19 @@ public class Recherche extends AbstractAuditingEntity implements Serializable {
 
     public void setMotifres(String motifres) {
         this.motifres = motifres;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Recherche user(User user) {
+        this.user = user;
+        return this;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Entreprise getEntPrestataire() {

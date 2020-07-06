@@ -50,6 +50,13 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "recherche",
+            "relationshipName": "user",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
             "otherEntityName": "entreprise",
             "otherEntityRelationshipName": "recherche",
             "relationshipName": "entPrestataire",

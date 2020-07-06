@@ -4,17 +4,19 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } from 'ng-jhipster';
+import { JhiDataUtils, JhiEventManager, JhiEventWithContent, JhiFileLoadError } from 'ng-jhipster';
 
 import { IRecherche, Recherche } from 'app/shared/model/recherche.model';
 import { RechercheService } from './recherche.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
+import { IUser } from 'app/core/user/user.model';
+import { UserService } from 'app/core/user/user.service';
 import { IEntreprise } from 'app/shared/model/entreprise.model';
 import { EntrepriseService } from 'app/entities/entreprise/entreprise.service';
 import { IPersonne } from 'app/shared/model/personne.model';
 import { PersonneService } from 'app/entities/personne/personne.service';
 
-type SelectableEntity = IEntreprise | IPersonne;
+type SelectableEntity = IUser | IEntreprise | IPersonne;
 
 @Component({
   selector: 'jhi-recherche-update',
@@ -22,6 +24,7 @@ type SelectableEntity = IEntreprise | IPersonne;
 })
 export class RechercheUpdateComponent implements OnInit {
   isSaving = false;
+  users: IUser[] = [];
   entreprises: IEntreprise[] = [];
   personnes: IPersonne[] = [];
   dateDp: any;
@@ -37,6 +40,7 @@ export class RechercheUpdateComponent implements OnInit {
     offredeservice: [],
     resoffredeservice: [],
     motifres: [],
+    userId: [],
     entPrestataireId: [],
     entFinaleId: [],
     contactId: []
@@ -46,6 +50,7 @@ export class RechercheUpdateComponent implements OnInit {
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
     protected rechercheService: RechercheService,
+    protected userService: UserService,
     protected entrepriseService: EntrepriseService,
     protected personneService: PersonneService,
     protected activatedRoute: ActivatedRoute,
@@ -55,6 +60,8 @@ export class RechercheUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ recherche }) => {
       this.updateForm(recherche);
+
+      this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
 
       this.entrepriseService.query().subscribe((res: HttpResponse<IEntreprise[]>) => (this.entreprises = res.body || []));
 
@@ -74,6 +81,7 @@ export class RechercheUpdateComponent implements OnInit {
       offredeservice: recherche.offredeservice,
       resoffredeservice: recherche.resoffredeservice,
       motifres: recherche.motifres,
+      userId: recherche.userId,
       entPrestataireId: recherche.entPrestataireId,
       entFinaleId: recherche.entFinaleId,
       contactId: recherche.contactId
@@ -123,6 +131,7 @@ export class RechercheUpdateComponent implements OnInit {
       offredeservice: this.editForm.get(['offredeservice'])!.value,
       resoffredeservice: this.editForm.get(['resoffredeservice'])!.value,
       motifres: this.editForm.get(['motifres'])!.value,
+      userId: this.editForm.get(['userId'])!.value,
       entPrestataireId: this.editForm.get(['entPrestataireId'])!.value,
       entFinaleId: this.editForm.get(['entFinaleId'])!.value,
       contactId: this.editForm.get(['contactId'])!.value
