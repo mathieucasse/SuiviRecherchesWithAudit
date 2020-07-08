@@ -16,4 +16,6 @@ public interface RechercheRepository extends JpaRepository<Recherche, Long> {
 
     @Query("select recherche from Recherche recherche where recherche.user.login = ?#{principal.username} order by recherche.resoffredeservice, recherche.date desc")
     Page<Recherche> findByUserIsCurrentUser(Pageable pageable);
+
+    Page<Recherche> findAllByOrderByResoffredeserviceAscDateDesc(Pageable pageable);
 }
