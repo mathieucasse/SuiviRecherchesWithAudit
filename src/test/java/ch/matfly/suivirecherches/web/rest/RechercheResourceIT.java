@@ -168,7 +168,12 @@ public class RechercheResourceIT {
 
         // Create the Recherche
         RechercheDTO rechercheDTO = rechercheMapper.toDto(recherche);
+        restRechercheMockMvc = MockMvcBuilders
+            .webAppContextSetup(context)
+            .apply(springSecurity())
+            .build();
         restRechercheMockMvc.perform(post("/api/recherches")
+            .with(user("user").roles("USER"))
             .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(rechercheDTO)))
             .andExpect(status().isCreated());
