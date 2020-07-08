@@ -2,6 +2,8 @@ package ch.matfly.suivirecherches.service.impl;
 
 import ch.matfly.suivirecherches.domain.Recherche;
 import ch.matfly.suivirecherches.repository.RechercheRepository;
+import ch.matfly.suivirecherches.security.AuthoritiesConstants;
+import ch.matfly.suivirecherches.security.SecurityUtils;
 import ch.matfly.suivirecherches.service.RechercheService;
 import ch.matfly.suivirecherches.service.dto.RechercheDTO;
 import ch.matfly.suivirecherches.service.mapper.RechercheMapper;
@@ -56,6 +58,10 @@ public class RechercheServiceImpl implements RechercheService {
     @Transactional(readOnly = true)
     public Page<RechercheDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Recherches");
+        if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)){
+            return rechercheRepository.findAllByOrderByResoffredeserviceAscDateDesc(pageable)
+                .map(rechercheMapper::toDto);
+        }
         return rechercheRepository.findByUserIsCurrentUser(pageable)
             .map(rechercheMapper::toDto);
     }
