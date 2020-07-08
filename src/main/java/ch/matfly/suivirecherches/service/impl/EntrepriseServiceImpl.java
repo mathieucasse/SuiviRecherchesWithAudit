@@ -1,13 +1,12 @@
 package ch.matfly.suivirecherches.service.impl;
 
-import ch.matfly.suivirecherches.service.EntrepriseService;
 import ch.matfly.suivirecherches.domain.Entreprise;
 import ch.matfly.suivirecherches.repository.EntrepriseRepository;
+import ch.matfly.suivirecherches.service.EntrepriseService;
 import ch.matfly.suivirecherches.service.dto.EntrepriseDTO;
 import ch.matfly.suivirecherches.service.mapper.EntrepriseMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -57,7 +56,7 @@ public class EntrepriseServiceImpl implements EntrepriseService {
     @Transactional(readOnly = true)
     public Page<EntrepriseDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Entreprises");
-        return entrepriseRepository.findAll(pageable)
+        return entrepriseRepository.findAllByOrderByName(pageable)
             .map(entrepriseMapper::toDto);
     }
 

@@ -26,9 +26,10 @@ entity Recherche{
     motifres String
 }
 relationship ManyToOne{
-	Recherche{entPrestataire(name)} to Entreprise,
-    Recherche{entFinale(name)} to Entreprise,
-    Recherche{contact(lastName)} to Personne,
+    Recherche{user(id)} to User
+	Recherche{entPrestataire(name)} to Entreprise
+    Recherche{entFinale(name)} to Entreprise
+    Recherche{contact(lastName)} to Personne
     Personne{entreprise(name)} to Entreprise
 }
 

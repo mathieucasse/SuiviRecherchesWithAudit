@@ -1,9 +1,11 @@
 package ch.matfly.suivirecherches.web.rest;
 
+import ch.matfly.suivirecherches.security.AuthoritiesConstants;
+import ch.matfly.suivirecherches.security.SecurityUtils;
 import ch.matfly.suivirecherches.service.RechercheService;
-import ch.matfly.suivirecherches.web.rest.errors.BadRequestAlertException;
+import ch.matfly.suivirecherches.service.UserService;
 import ch.matfly.suivirecherches.service.dto.RechercheDTO;
-
+import ch.matfly.suivirecherches.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -13,10 +15,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -39,9 +40,12 @@ public class RechercheResource {
     private String applicationName;
 
     private final RechercheService rechercheService;
+    private final UserService userService;
 
-    public RechercheResource(RechercheService rechercheService) {
+
+    public RechercheResource(RechercheService rechercheService, UserService userService) {
         this.rechercheService = rechercheService;
+        this.userService = userService;
     }
 
     /**
@@ -56,6 +60,10 @@ public class RechercheResource {
         log.debug("REST request to save Recherche : {}", rechercheDTO);
         if (rechercheDTO.getId() != null) {
             throw new BadRequestAlertException("A new recherche cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+        if(!SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+            log.debug("No user passed in, using current user: {}", SecurityUtils.getCurrentUserLogin());
+            setUserId(rechercheDTO);
         }
         RechercheDTO result = rechercheService.save(rechercheDTO);
         return ResponseEntity.created(new URI("/api/recherches/" + result.getId()))
@@ -122,5 +130,9 @@ public class RechercheResource {
         log.debug("REST request to delete Recherche : {}", id);
         rechercheService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    }
+
+    private void setUserId(RechercheDTO rechercheDTO) {
+        rechercheDTO.setUserId(userService.getUserWithAuthoritiesByLogin(SecurityUtils.getCurrentUserLogin().get()).get().getId());
     }
 }

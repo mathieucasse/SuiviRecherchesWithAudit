@@ -1,4 +1,4 @@
-import { element, by, ElementFinder } from 'protractor';
+import { by, element, ElementFinder } from 'protractor';
 
 export class RechercheComponentsPage {
   createButton = element(by.id('jh-create-entity'));
@@ -39,6 +39,7 @@ export class RechercheUpdatePage {
   resoffredeserviceSelect = element(by.id('field_resoffredeservice'));
   motifresInput = element(by.id('field_motifres'));
 
+  userSelect = element(by.id('field_user'));
   entPrestataireSelect = element(by.id('field_entPrestataire'));
   entFinaleSelect = element(by.id('field_entFinale'));
   contactSelect = element(by.id('field_contact'));
@@ -127,6 +128,25 @@ export class RechercheUpdatePage {
 
   async getMotifresInput(): Promise<string> {
     return await this.motifresInput.getAttribute('value');
+  }
+
+  async userSelectLastOption(): Promise<void> {
+    await this.userSelect
+      .all(by.tagName('option'))
+      .last()
+      .click();
+  }
+
+  async userSelectOption(option: string): Promise<void> {
+    await this.userSelect.sendKeys(option);
+  }
+
+  getUserSelect(): ElementFinder {
+    return this.userSelect;
+  }
+
+  async getUserSelectedOption(): Promise<string> {
+    return await this.userSelect.element(by.css('option:checked')).getText();
   }
 
   async entPrestataireSelectLastOption(): Promise<void> {

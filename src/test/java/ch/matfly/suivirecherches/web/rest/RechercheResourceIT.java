@@ -2,12 +2,15 @@ package ch.matfly.suivirecherches.web.rest;
 
 import ch.matfly.suivirecherches.SuiviRecherchesApp;
 import ch.matfly.suivirecherches.domain.Recherche;
+import ch.matfly.suivirecherches.domain.User;
+import ch.matfly.suivirecherches.domain.enumeration.OffreDeService;
+import ch.matfly.suivirecherches.domain.enumeration.ResOffreDeService;
 import ch.matfly.suivirecherches.repository.RechercheRepository;
 import ch.matfly.suivirecherches.service.RechercheService;
+import ch.matfly.suivirecherches.service.UserService;
 import ch.matfly.suivirecherches.service.dto.RechercheDTO;
 import ch.matfly.suivirecherches.service.mapper.RechercheMapper;
 import ch.matfly.suivirecherches.web.rest.errors.ExceptionTranslator;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -19,8 +22,8 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Base64Utils;
 import org.springframework.validation.Validator;
+import org.springframework.web.context.WebApplicationContext;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
@@ -30,11 +33,11 @@ import java.util.List;
 import static ch.matfly.suivirecherches.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import ch.matfly.suivirecherches.domain.enumeration.OffreDeService;
-import ch.matfly.suivirecherches.domain.enumeration.ResOffreDeService;
 /**
  * Integration tests for the {@link RechercheResource} REST controller.
  */
@@ -92,6 +95,12 @@ public class RechercheResourceIT {
     @Autowired
     private Validator validator;
 
+    @Autowired
+    private WebApplicationContext context;
+
+    @Autowired
+    private UserService userService;
+
     private MockMvc restRechercheMockMvc;
 
     private Recherche recherche;
@@ -99,7 +108,7 @@ public class RechercheResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final RechercheResource rechercheResource = new RechercheResource(rechercheService);
+        final RechercheResource rechercheResource = new RechercheResource(rechercheService, userService);
         this.restRechercheMockMvc = MockMvcBuilders.standaloneSetup(rechercheResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -159,7 +168,12 @@ public class RechercheResourceIT {
 
         // Create the Recherche
         RechercheDTO rechercheDTO = rechercheMapper.toDto(recherche);
+        restRechercheMockMvc = MockMvcBuilders
+            .webAppContextSetup(context)
+            .apply(springSecurity())
+            .build();
         restRechercheMockMvc.perform(post("/api/recherches")
+            .with(user("user").roles("USER"))
             .contentType(TestUtil.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(rechercheDTO)))
             .andExpect(status().isCreated());
@@ -203,11 +217,22 @@ public class RechercheResourceIT {
     @Test
     @Transactional
     public void getAllRecherches() throws Exception {
+
+        User user = userService.getUserWithAuthoritiesByLogin("user").get();
+        recherche.setUser(user);
+
         // Initialize the database
         rechercheRepository.saveAndFlush(recherche);
 
+        restRechercheMockMvc = MockMvcBuilders
+            .webAppContextSetup(context)
+            .apply(springSecurity())
+            .build();
+
         // Get all the rechercheList
-        restRechercheMockMvc.perform(get("/api/recherches?sort=id,desc"))
+        restRechercheMockMvc.perform(get("/api/recherches?sort=id,desc")
+                .with(user("user").roles("USER"))
+                )
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(recherche.getId().intValue())))
@@ -221,7 +246,7 @@ public class RechercheResourceIT {
             .andExpect(jsonPath("$.[*].resoffredeservice").value(hasItem(DEFAULT_RESOFFREDESERVICE.toString())))
             .andExpect(jsonPath("$.[*].motifres").value(hasItem(DEFAULT_MOTIFRES)));
     }
-    
+
     @Test
     @Transactional
     public void getRecherche() throws Exception {

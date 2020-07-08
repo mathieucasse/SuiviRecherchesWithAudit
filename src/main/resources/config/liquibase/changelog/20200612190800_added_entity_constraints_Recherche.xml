@@ -7,7 +7,7 @@
         Added the constraints for entity Recherche.
     -->
     <changeSet id="20200612190800-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="ent_prestataire_id"
                                  baseTableName="recherche"
                                  constraintName="fk_recherche_ent_prestataire_id"
@@ -26,5 +26,12 @@
                                  referencedColumnNames="id"
                                  referencedTableName="personne"/>
 
+    </changeSet>
+    <changeSet id="20200630235800-2" author="jhipster">
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="recherche"
+                                 constraintName="fk_recherche_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
     </changeSet>
 </databaseChangeLog>

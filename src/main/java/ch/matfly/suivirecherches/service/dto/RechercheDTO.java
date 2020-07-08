@@ -1,12 +1,14 @@
 package ch.matfly.suivirecherches.service.dto;
 
-import java.time.LocalDate;
-import javax.validation.constraints.*;
-import java.io.Serializable;
-import java.util.Objects;
-import javax.persistence.Lob;
 import ch.matfly.suivirecherches.domain.enumeration.OffreDeService;
 import ch.matfly.suivirecherches.domain.enumeration.ResOffreDeService;
+
+import javax.persistence.Lob;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * A DTO for the {@link ch.matfly.suivirecherches.domain.Recherche} entity.
@@ -36,6 +38,8 @@ public class RechercheDTO extends AbstractAuditingDTO implements Serializable {
 
     private String motifres;
 
+
+    private Long userId;
 
     private Long entPrestataireId;
 
@@ -129,6 +133,14 @@ public class RechercheDTO extends AbstractAuditingDTO implements Serializable {
         this.motifres = motifres;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     public Long getEntPrestataireId() {
         return entPrestataireId;
     }
@@ -211,6 +223,7 @@ public class RechercheDTO extends AbstractAuditingDTO implements Serializable {
             ", offredeservice='" + getOffredeservice() + "'" +
             ", resoffredeservice='" + getResoffredeservice() + "'" +
             ", motifres='" + getMotifres() + "'" +
+            ", userId=" + getUserId() +
             ", entPrestataireId=" + getEntPrestataireId() +
             ", entPrestataireName='" + getEntPrestataireName() + "'" +
             ", entFinaleId=" + getEntFinaleId() +

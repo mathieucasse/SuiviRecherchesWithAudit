@@ -49,6 +49,7 @@ describe('Recherche e2e test', () => {
       rechercheUpdatePage.offredeserviceSelectLastOption(),
       rechercheUpdatePage.resoffredeserviceSelectLastOption(),
       rechercheUpdatePage.setMotifresInput('motifres'),
+      rechercheUpdatePage.userSelectLastOption(),
       rechercheUpdatePage.entPrestataireSelectLastOption(),
       rechercheUpdatePage.entFinaleSelectLastOption(),
       rechercheUpdatePage.contactSelectLastOption()
